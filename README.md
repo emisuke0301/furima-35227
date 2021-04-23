@@ -30,7 +30,7 @@
 | ship_from_id | integer    | null: false                   |
 | ship_date_id | integer    | null: false                   |
 | price        | integer    | null: false                   |
-| user_id      | references | null: false foreign_key: true |
+| user         | references | null: false foreign_key: true |
 
 ### Association
 
@@ -41,8 +41,8 @@
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
-| user_id  | references | null: false, foreign_key: true |
-| order_id | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -63,7 +63,7 @@
 | city          | string     | null: false                    |
 | building      | string     |                                |
 | phone_num     | string     | null: false                    |
-| order_id      | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 
 ### Association
