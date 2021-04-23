@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column       | Type       | Options                       |
-| ------------ | ---------- | ----------------------------- |
-| name         | string     | null: false                   |
-| text         | text       | null: false                   |
-| category_id  | integer    | null: false                   |
-| status_id    | integer    | null: false                   |
-| ship_cost_id | integer    | null: false                   |
-| ship_from_id | integer    | null: false                   |
-| ship_date_id | integer    | null: false                   |
-| price        | integer    | null: false                   |
-| user         | references | null: false foreign_key: true |
+| Column        | Type       | Options                       |
+| ------------- | ---------- | ----------------------------- |
+| name          | string     | null: false                   |
+| text          | text       | null: false                   |
+| category_id   | integer    | null: false                   |
+| status_id     | integer    | null: false                   |
+| ship_cost_id  | integer    | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| ship_date_id  | integer    | null: false                   |
+| price         | integer    | null: false                   |
+| user          | references | null: false foreign_key: true |
 
 ### Association
 
@@ -61,7 +61,6 @@
 | building      | string     |                                |
 | phone_num     | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
-
 
 ### Association
 
