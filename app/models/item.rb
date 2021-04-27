@@ -10,12 +10,12 @@ class Item < ApplicationRecord
 	belongs_to :ship_date
 
 	with_options presence: true do
+		validates :image
 		validates :name
 		validates :text
-		validates :price, numericality: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
-		validates :image
+		validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number' }, numericality: { in: 300..9_999_999, message: 'Out of setting range' }
 	end
-	with_options numericality: { other_than: 1 } do
+	with_options numericality: { other_than: 1, message: 'Select' } do
 		validates :category_id
 		validates :status_id
 		validates :ship_cost_id
