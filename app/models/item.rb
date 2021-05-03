@@ -22,4 +22,7 @@ class Item < ApplicationRecord
 		validates :prefecture_id
 		validates :ship_date_id
 	end
+
+	belongs_to :user
+	has_one :order
 end
