@@ -4,13 +4,13 @@ class OrderBuyer
 
 	with_options presence: true do
 		validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "Input correctly" }
+		validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
 		validates :city
 		validates :block
 		validates :phone_num, numericality: { only_integer: true, message: "Input only number" }, length: { in: 10..11 }
 		validates :user_id
 		validates :item_id
 	end
-	validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
 
 	def save
 		order = Order.create(item_id: item_id, user_id: user_id)
