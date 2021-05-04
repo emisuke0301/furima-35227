@@ -4,12 +4,12 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    @item = Item.all.order("created_at DESC")
+    @item = Item.all.order('created_at DESC')
   end
 
   def show
   end
-  
+
   def new
     @item = Item.new
   end
@@ -24,9 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order.present?
   end
 
   def update
@@ -46,8 +44,10 @@ class ItemsController < ApplicationController
   end
 
   private
-	def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :ship_cost_id, :prefecture_id, :ship_date_id, :price, :image).merge(user_id: current_user.id)
+
+  def item_params
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :ship_cost_id, :prefecture_id, :ship_date_id, :price,
+                                 :image).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -55,8 +55,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 end
