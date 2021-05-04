@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_item
+	before_action :move_to_root
+	before_action :sold_out_item
 
 	def index
 		@order_buyer = OrderBuyer.new
@@ -23,4 +26,14 @@ class OrdersController < ApplicationController
 	def set_item
     @item = Item.find(params[:item_id])
   end
+
+	def move_to_root
+    unless current_user.id != @item.user_id
+      redirect_to root_path
+    end
+  end
+
+	def sold_out_item
+    redirect_to root_path if @item.order.present?
+   end
 end
