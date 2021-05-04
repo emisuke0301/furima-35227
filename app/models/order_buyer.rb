@@ -7,7 +7,7 @@ class OrderBuyer
 		validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
 		validates :city
 		validates :block
-		validates :phone_num, numericality: { only_integer: true, message: "Input only number" }, length: { in: 10..11 }
+		validates :phone_num, numericality: { only_integer: true, message: "Input only number" }, length: { maximum: 11 }
 		validates :user_id
 		validates :item_id
 	end
