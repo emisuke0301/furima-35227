@@ -35,37 +35,37 @@ RSpec.describe OrderBuyer, type: :model do
       it 'postal_codeがハイフンを含んでいないと購入できない' do
         @order_buyer.postal_code = '1234567'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'postal_codeの前半が半角数字2桁以下だと購入できない' do
         @order_buyer.postal_code = '12-3456'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'postal_codeの前半が半角数字4桁以上だと購入できない' do
         @order_buyer.postal_code = '1234-5678'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'postal_codeの後半が半角数字3桁以下だと購入できない' do
         @order_buyer.postal_code = '123-567'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'postal_codeの後半が半角数字5桁以上だと購入できない' do
         @order_buyer.postal_code = '123-56789'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'postal_codeが全角だと購入できない' do
         @order_buyer.postal_code = '１２３ー４５６７'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Postal code Input correctly')
+        expect(@order_buyer.errors.full_messages).to include("Postal code Input correctly")
       end
       it 'prefecture_idが選択されていなければ購入できない' do
         @order_buyer.prefecture_id = 1
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Prefecture Select')
+        expect(@order_buyer.errors.full_messages).to include("Prefecture Select")
       end
       it 'cityが空では購入できない' do
         @order_buyer.city = ''
@@ -85,17 +85,27 @@ RSpec.describe OrderBuyer, type: :model do
       it 'phone_numが半角英字では購入できない' do
         @order_buyer.phone_num = 'aaaaaaaaaaa'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Phone num Input only number')
+        expect(@order_buyer.errors.full_messages).to include("Phone num Input only number")
       end
       it 'phone_numが全角では購入できない' do
         @order_buyer.phone_num = '０９０１２３４５６７８'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Phone num Input only number')
+        expect(@order_buyer.errors.full_messages).to include("Phone num Input only number")
       end
       it 'phone_numが12桁以上では購入できない' do
         @order_buyer.phone_num = '090123456789'
         @order_buyer.valid?
-        expect(@order_buyer.errors.full_messages).to include('Phone num is too long (maximum is 11 characters)')
+        expect(@order_buyer.errors.full_messages).to include("Phone num is too long (maximum is 11 characters)")
+      end
+      it 'user_idが空では購入できない' do
+        @order_buyer.user_id = nil
+        @order_buyer.valid?
+        expect(@order_buyer.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do
+        @order_buyer.item_id = nil
+        @order_buyer.valid?
+        expect(@order_buyer.errors.full_messages).to include("Item can't be blank")
       end
       it 'tokenが空では登録できないこと' do
         @order_buyer.token = nil
